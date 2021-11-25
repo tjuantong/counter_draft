@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h1 class="counter-display"></h1>
+        <button class="counter-minus">-</button>
+        <button id="counter-plus" class="counter-plus">+</button>
+        <table id="dd"></table>
+    </body>
+
+    <script>    
+        let counterDisplayElem = document.querySelector('.counter-display');
+        let counterMinusElem = document.querySelector('.counter-minus');
+        let counterPlusElem = document.getElementById("counter-plus");
+        let count = 0;
+
+        updateDisplay();
+
+        counterPlusElem.addEventListener("click", function(){
+            count++;
+            updateDisplay();
+
+            var row = document.createElement("tr");
+            var result = new Date().toLocaleTimeString(navigator.language, { 
+                                                                    
+                                                                    hour: '2-digit', 
+                                                                    minute:'2-digit', 
+                                                                    second:'2-digit',
+                                                                    month:"short",
+                                                                    day:"numeric",
+                                                                    year:"numeric"
+                                                                });
+            
+            row.innerHTML = result;
+            document.getElementById("dd").appendChild(row);                                                        
+        });
+        
+        counterMinusElem.addEventListener("click",()=>{
+            count--;
+            updateDisplay();
+        });
+
+        function updateDisplay(){
+            counterDisplayElem.innerHTML = count;
+        };
+    </script>
+</html>
